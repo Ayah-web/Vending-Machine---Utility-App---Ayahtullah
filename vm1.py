@@ -34,6 +34,19 @@ class BunsVendingMachine:
 ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
         """
         print(vmimage) # displays a vending machine to the user
+        for category, items in self.stock.items():
+            # aesthetic line separator
+            print("════════════════════════════════════")
+            # prints f string with new line
+            print(f"\n{category}:")
+            # for loop that goes through the key pairs in the dictionary of items
+            for code, item in items.items():
+                # prints f string that includes code, name, price and stock
+                print(f"{code}. {item['name']} - ${item['price']:.2f} (Stock: {item['stock']})")
+            # creates a new line
+            print("\n") 
+            # aesthetic line separator
+            print("════════════════════════════════════")
         
 
         
