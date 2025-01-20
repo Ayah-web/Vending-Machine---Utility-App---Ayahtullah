@@ -1,4 +1,5 @@
 class BunsVendingMachine:
+    
     # initializing self
     def __init__(self): 
         self.stock = {
@@ -17,6 +18,7 @@ class BunsVendingMachine:
         }
         # suggests pairings for items
         self.suggestions = {"1" : "4", "2" : "5", "3" : "6"} 
+    
     # shows what will be displayed to console
     def displaying_menu(self): 
         # welcoming the user
@@ -54,6 +56,7 @@ class BunsVendingMachine:
             print("\n") 
             # aesthetic line separator
             print("════════════════════════════════════")
+   
     # def function for getting users choice/pick from vending machine
     def get_users_pick(self):
         # while loop
@@ -73,7 +76,22 @@ class BunsVendingMachine:
                     print("Your pick is invalid, please try again. Enter the code of the item you want to purchase: (or 'l' to leave)")
             # exception within try if user inputs an invalid value
             except ValueError:
-                print("Your input was invalid, please enter a valid code mentioned above")        
+                print("Your input was invalid, please enter a valid code mentioned above")   
+    
+    # def function with parameter pick            
+    def process_purchase(self, pick):
+        # for loop iteration
+        for category, items in self.stock.items():
+            # if users pick in items
+            if pick in items:
+                # if items found
+                item = items[pick]
+                # checks whether the stock of item is below 0 or equal
+                if item["stock"] <= 0:
+                    # prints f string statement regarding item being out of stock
+                    print(f"{item['name']} is out of stock.")
+                    # returning value of 0
+                    return 0                 
         
 
         
