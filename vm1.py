@@ -79,7 +79,7 @@ class BunsVendingMachine:
                 print("Your input was invalid, please enter a valid code mentioned above")   
     
     # def function with parameter pick            
-    def process_purchase(self, pick):
+    def processing_purchase(self, pick):
         # for loop iteration
         for category, items in self.stock.items():
             # if users pick in items
@@ -91,7 +91,39 @@ class BunsVendingMachine:
                     # prints f string statement regarding item being out of stock
                     print(f"{item['name']} is out of stock.")
                     # returning value of 0
-                    return 0                 
+                    return 0 
+                # while loop is true
+                while True:
+                    # try block
+                    try:
+                        # variable for money of user input
+                        money = float(input(f"Please insert ${item['price']:.2f} or more !!"))
+                        # if statement if money is greater than or equal to the items price
+                        if money >= item["price"]:
+                            # variable for user change
+                            change = money - item["price"]
+                            # if item is purchased, 1 is removed from the stock
+                            item["stock"] -= 1
+                            # printing f string to show that item is dispensing
+                            print(f"Dispensing your {item['name']}...")
+                            # print f string that gives user their change to 2 significant figures
+                            print(f"Your change is ${change:.2f}")
+                            # if loop to check if item picked is in self suggestions and self stock, in order to recommend
+                            if pick in self.suggestions and self.stock:
+                                # recommends the user an itemm from the vending machine according to last purchase
+                                print(f"You might also like our {self.stock['Snacks'][self.suggestions[pick]]['name']}!")
+                            # returns value of 1
+                            return 1
+                        # else statement if money is less than items price
+                        else:
+                            # printing message to notify user of insufficient funds
+                            print("Insufficient funds given. Please insert more money.")
+                    # except function to the try block for value error
+                    except ValueError:
+                        # prints message to user that their input was invalid
+                        print("Invalid input. Please enter a valid amount of money.")
+        # returning value of 0
+        return 0                
         
 
         
