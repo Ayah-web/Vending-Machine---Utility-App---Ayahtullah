@@ -11,9 +11,9 @@ class BunsVendingMachine:
             },
             # heading for snacks
             "Snacks" : { 
-                "4" : {"name" : "Strawberry Roll", "price" : 3.00, "stock": 10},
-                "5" : {"name" : "Cream Caramel", "price" : 3.00, "stock": 10},
-                "6" : {"name" : "Spicy Ramen", "price" : 3.00, "stock": 10}
+                "4" : {"name" : "Strawberry Roll", "price" : 5.00, "stock": 8},
+                "5" : {"name" : "Cream Caramel", "price" : 2.50, "stock": 11},
+                "6" : {"name" : "Spicy Ramen", "price" : 4.00, "stock": 6}
             },
         }
         # suggests pairings for items
@@ -124,6 +124,39 @@ class BunsVendingMachine:
                         print("Invalid input. Please enter a valid amount of money.")
         # returning value of 0
         return 0                
-        
+    
+    # def function for vending machine to run
+    def run(self):
+        # while lopp
+        while True:
+            
+            self.displaying_menu()
+            # variable named pick
+            pick = self.get_users_pick()
+            # if statement if user pick is l 
+            if pick == 'l':
+                # breaks out of vending machine
+                break
+            # if processing purchase fails then it continues
+            if self.processing_purchase(pick) == 0:
+                continue
+            # while loop
+            while True:
+                # variable named another item which asks user if they want to buy another item
+                another_item = input("Do you want to buy another item? (Y/N): ").lower()
+                # if yes then break
+                if another_item == "y":
+                    break
+                # otherwise returns
+                elif another_item == "n":
+                    return
+                # invalid input, user asked to enter y or n
+                else:
+                    print("Invalid input. Please enter 'Y' or 'N'.")    
+  
+# variable containing class                  
+vending_machine = BunsVendingMachine()
+# running vending machine
+vending_machine.run()
 
         
