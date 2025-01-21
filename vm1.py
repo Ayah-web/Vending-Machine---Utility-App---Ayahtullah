@@ -111,7 +111,7 @@ class BunsVendingMachine:
                             # if loop to check if item picked is in self suggestions and self stock, in order to recommend
                             if pick in self.suggestions and self.stock:
                                 # recommends the user an itemm from the vending machine according to last purchase
-                                print(f"You might also like our {self.stock['Snacks'][self.suggestions[pick]]['name']}!")
+                                print(f"You'd love {self.stock['Snacks'][self.suggestions[pick]]['name']}, it goes well with your purchase!")
                             # returns value of 1
                             return 1
                         # else statement if money is less than items price
