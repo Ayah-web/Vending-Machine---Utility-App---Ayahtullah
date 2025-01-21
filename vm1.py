@@ -1,3 +1,4 @@
+# class to put def functions inside, neater and compact code
 class BunsVendingMachine:
     
     # initializing self
