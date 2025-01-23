@@ -102,6 +102,24 @@ class BunsVendingMachine:
                         # tells user payment method is invalid and to enter cash or card
                         print("Invalid payment method. Please enter 'cash' or 'card'.")
                         continue
+                    
+                    if payment_method == "cash":
+                        while True:
+                            try:
+                                money = float(input(f"Please insert ${item['price']:.2f} or more: $"))
+                                if money >= item["price"]:
+                                    change = money - item["price"]
+                                    item["stock"] -= 1
+                                    print(f"Dispensing {item['name']}...")
+                                    print(f"Your change is ${change:.2f}")
+                                    if pick in self.suggestions and self.stock["Snacks"][self.suggestions[pick]]["stock"] > 0:
+                                        print(f"You'd love {self.stock['Snacks'][self.suggestions[pick]]['name']}, it goes well with your purchase!")
+                                    # purchase is successful
+                                    return 1  
+                                else:
+                                    print("Insufficient funds. Please insert more money.")
+                            except ValueError:
+                                print("Invalid input. Please enter a valid amount of money.")
     
     # def function for vending machine to run
     def run(self):
