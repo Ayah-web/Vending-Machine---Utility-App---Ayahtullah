@@ -1,3 +1,6 @@
+# importing random
+import random
+
 # class to put def functions inside, neater and compact code
 class BunsVendingMachine:
     
@@ -120,6 +123,23 @@ class BunsVendingMachine:
                                     print("Insufficient funds. Please insert more money.")
                             except ValueError:
                                 print("Invalid input. Please enter a valid amount of money.")
+                                
+                    elif payment_method == "card":
+                        if random.random() < 0.7:  # 70% chance of success
+                            print("Processing card payment...")
+                            print("Payment successful.")
+                            item["stock"] -= 1
+                            print(f"Dispensing {item['name']}, one moment...")
+                            if pick in self.suggestions and self.stock["Snacks"][self.suggestions[pick]]["stock"] > 0:
+                                print(f"You'd love {self.stock['Snacks'][self.suggestions[pick]]['name']}, it goes well with your purchase!")
+                            # purchase is successful
+                            return 1  
+                        else:
+                            print("Card payment declined. Please try again or use cash.")
+                            # returns user to main menu
+                            return 0  
+        # item is not found
+        return 0  
     
     # def function for vending machine to run
     def run(self):
