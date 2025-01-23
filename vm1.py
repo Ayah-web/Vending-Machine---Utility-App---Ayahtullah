@@ -106,39 +106,62 @@ class BunsVendingMachine:
                         print("Invalid payment method. Please enter 'cash' or 'card'.")
                         continue
                     
+                    # if statement for payment method being cash
                     if payment_method == "cash":
+                        # while loop is true
                         while True:
+                            # try function
                             try:
+                                # money variable asking user input
                                 money = float(input(f"Please insert ${item['price']:.2f} or more: $"))
+                                # if statement if money is greater or equal to price
                                 if money >= item["price"]:
+                                    # change is given by money - price of item
                                     change = money - item["price"]
+                                    # stock of item reduces by a factor of 1 after purchase
                                     item["stock"] -= 1
-                                    print(f"Dispensing {item['name']}...")
+                                    # dispensing item
+                                    print(f"Dispensing {item['name']}, one moment...")
+                                    # gives user the change
                                     print(f"Your change is ${change:.2f}")
+                                    # if statement to suggest item from suggestions if item is in suggestions and stock
                                     if pick in self.suggestions and self.stock["Snacks"][self.suggestions[pick]]["stock"] > 0:
                                         print(f"You'd love {self.stock['Snacks'][self.suggestions[pick]]['name']}, it goes well with your purchase!")
                                     # purchase is successful
                                     return 1  
+                                # else statement if money is less than price of item
                                 else:
+                                    # tells user that they need to insert more money
                                     print("Insufficient funds. Please insert more money.")
+                            # value error considered within try function        
                             except ValueError:
+                                # tells user their input is invalid
                                 print("Invalid input. Please enter a valid amount of money.")
-                                
+                    
+                    # elif function if payment method is card            
                     elif payment_method == "card":
-                        if random.random() < 0.7:  # 70% chance of success
+                        # if statement for 70% acceptance rate of card
+                        if random.random() < 0.7:  
+                            # tells user card payment is processing
                             print("Processing card payment...")
+                            # tells user payment is successful
                             print("Payment successful.")
+                            # stock of item reduces by a factor of 1
                             item["stock"] -= 1
+                            # tells user item is dispensing
                             print(f"Dispensing {item['name']}, one moment...")
+                             # if statement to suggest item from suggestions if item is in suggestions and stock
                             if pick in self.suggestions and self.stock["Snacks"][self.suggestions[pick]]["stock"] > 0:
                                 print(f"You'd love {self.stock['Snacks'][self.suggestions[pick]]['name']}, it goes well with your purchase!")
                             # purchase is successful
-                            return 1  
+                            return 1 
+                        # else statement for when card is declines 
                         else:
+                            # tells user their card payment has been declined
                             print("Card payment declined. Please try again or use cash.")
                             # returns user to main menu
                             return 0  
-        # item is not found
+        # item is not found in stock
         return 0  
     
     # def function for vending machine to run
