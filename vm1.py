@@ -81,50 +81,27 @@ class BunsVendingMachine:
     
     # def function with parameter pick            
     def processing_purchase(self, pick):
-        # for loop iteration
         for category, items in self.stock.items():
-            # if users pick in items
+            # if statement if user pick is in items
             if pick in items:
-                # if items found
+                # item variable is equal to pick that is in items
                 item = items[pick]
-                # checks whether the stock of item is below 0 or equal
+                # if statement if stock of item is less than or equal to 0
                 if item["stock"] <= 0:
-                    # prints f string statement regarding item being out of stock
+                    # tells user that item is out of stock
                     print(f"{item['name']} is out of stock.")
-                    # returning value of 0
-                    return 0 
-                # while loop is true
+                    # returns to the main menu
+                    return 0
+
+                # while loop for payment method
                 while True:
-                    # try block
-                    try:
-                        # variable for money of user input
-                        money = float(input(f"Please insert ${item['price']:.2f} or more !!"))
-                        # if statement if money is greater than or equal to the items price
-                        if money >= item["price"]:
-                            # variable for user change
-                            change = money - item["price"]
-                            # if item is purchased, 1 is removed from the stock
-                            item["stock"] -= 1
-                            # printing f string to show that item is dispensing
-                            print(f"Dispensing your {item['name']}...")
-                            # print f string that gives user their change to 2 significant figures
-                            print(f"Your change is ${change:.2f}")
-                            # if loop to check if item picked is in self suggestions and self stock, in order to recommend
-                            if pick in self.suggestions and self.stock:
-                                # recommends the user an itemm from the vending machine according to last purchase
-                                print(f"You'd love {self.stock['Snacks'][self.suggestions[pick]]['name']}, it goes well with your purchase!")
-                            # returns value of 1
-                            return 1
-                        # else statement if money is less than items price
-                        else:
-                            # printing message to notify user of insufficient funds
-                            print("Insufficient funds given. Please insert more money.")
-                    # except function to the try block for value error
-                    except ValueError:
-                        # prints message to user that their input was invalid
-                        print("Invalid input. Please enter a valid amount of money.")
-        # returning value of 0
-        return 0                
+                    # asks user  if they would like to pay cash or card
+                    payment_method = input("How would you like to pay? (cash/card): ").lower()
+                    # if statement if user input is not cash or card
+                    if payment_method not in ("cash", "card"):
+                        # tells user payment method is invalid and to enter cash or card
+                        print("Invalid payment method. Please enter 'cash' or 'card'.")
+                        continue
     
     # def function for vending machine to run
     def run(self):
