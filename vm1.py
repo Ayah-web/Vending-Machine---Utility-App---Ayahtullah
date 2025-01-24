@@ -166,7 +166,7 @@ class BunsVendingMachine:
     
     # def function for vending machine to run
     def run(self):
-        # while lopp
+        # while loop
         while True:
             
             self.displaying_menu()
