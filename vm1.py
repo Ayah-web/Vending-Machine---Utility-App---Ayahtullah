@@ -7,7 +7,7 @@ class BunsVendingMachine:
     # initializing self
     def __init__(self): 
         self.stock = {
-            # heading of cold drinks
+            # heading for cold drinks
             "Cold Drinks" : { 
                 "1" : {"name" : "Strawberry Milk", "price" : 3.00, "stock": 10},
                 "2" : {"name" : "Melon Milk", "price" : 3.00, "stock": 10},
@@ -44,7 +44,7 @@ class BunsVendingMachine:
 ⣿⣿⣿⣿⣿⣿⠀⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠛⠀⠀⠀⠀⠀⣿⣿⣿⣿⣿⣿
 ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
         """
-         # displays a vending machine to the user
+         # displays a vending machine img to the user
         print(vmimage)
         # for loop for iteration
         for category, items in self.stock.items():
